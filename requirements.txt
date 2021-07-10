@@ -7,6 +7,6 @@ itsdangerous
 Jinja2
 MarkupSafe
 typing-extensions
-Werkzeug=
+Werkzeug
 zipp
 gunicorn

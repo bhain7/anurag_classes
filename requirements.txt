@@ -10,3 +10,4 @@ typing-extensions
 Werkzeug
 zipp
 gunicorn
+passlib

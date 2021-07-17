@@ -1,8 +1,13 @@
 from flask import Flask, render_template, request, redirect
+from model.db import init_db, register_user
+from model.ease import UserValidator
+
 
 # we will create an instance of Flask
 
 app = Flask(__name__)
+
+init_db()
 
 # https://example.com/search
 @app.route('/') # registering a route to our flask app
@@ -16,10 +21,19 @@ def register():
         name = request.form.get('username') # accessing the user's name
         email = request.form.get("email") # accessing the user's email
         password = request.form.get("password")
+        validate = UserValidator(name, email, password)
+        print("I am here in the code")
+        print(validate.name)
+        if validate.valid:
+            print("running validating")
+            return str(register_user(validate.data()))
+        else:
+            print("User not registered")
+            return validate.msg
+            
 
-        print(f"Name: {name}, Email: {email}, Password: {password}")
-        return redirect("/registered")
-    except:
+    except Exception as e:
+        print(e)
         return "error occured"
 
 

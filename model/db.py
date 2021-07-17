@@ -11,7 +11,7 @@ def connect():
 
 
 def init_db():
-    with open( r"C:\Users\bhain\Documents\GitHub\anurag_classes\model\table.sql","r") as sql:
+    with open( r"./model/table.sql","r") as sql:
         conn, cur = connect()
         for query in sql.readlines():
             cur.execute(query) #execute the query
